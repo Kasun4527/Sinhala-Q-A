@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <title>Sinhala Q&A App</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>සිංහල Q&A App</h1>
+    <form id="qaForm">
+        <input type="text" id="subject" placeholder="විෂයය (Physics)" required>
+        <input type="text" id="question" placeholder="ප්‍රශ්නය" required>
+        <button type="submit">Answer</button>
+    </form>
+
+    <audio id="voiceAnswer" controls></audio>
+
+    <script>
+        document.getElementById('qaForm').onsubmit = async (e) =>{
+            e.preventDefault();
+            const subject = document.getElementById('subject').value;
+            const question = document.getElementById('question').value;
+
+            const res = await fetch('/ask',{
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({subject, question})
+            })
+
+            const blob = await res.blob();
+            const url =URL.createObjectURL(blob);
+            const audio = document.getElementById('voiceAnswer');
+            audio.src = url;
+            audio.play();
+
+
+
+        };
+    </script>
+</body>
+</html>     
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+    width: 300px
+}
+
+button{
+    padding: 10px 20px
+}
+
+audio{
+    margin-top:20px;
+}
